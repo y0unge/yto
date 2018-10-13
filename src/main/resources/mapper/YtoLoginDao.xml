@@ -120,8 +120,8 @@
       update_time)
     values (#{loginId,jdbcType=BIGINT}, #{loginUsername,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, 
       #{loginPhoneNumber,jdbcType=VARCHAR}, #{loginEmail,jdbcType=VARCHAR}, #{wechatOpenid,jdbcType=VARCHAR}, 
-      #{headerUrl,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{headerUrl,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, now(),
+      now())
   </insert>
   <insert id="insertSelective" parameterType="yto.net.cn.bean.YtoLogin" >
     insert into yto_login
@@ -183,10 +183,10 @@
         #{userType,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
     </trim>
   </insert>
@@ -224,10 +224,10 @@
         user_type = #{record.userType,jdbcType=INTEGER},
       </if>
       <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        create_time = now(),
       </if>
       <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+        update_time = now(),
       </if>
     </set>
     <if test="_parameter != null" >
@@ -244,8 +244,8 @@
       wechat_openid = #{record.wechatOpenid,jdbcType=VARCHAR},
       header_url = #{record.headerUrl,jdbcType=VARCHAR},
       user_type = #{record.userType,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+      create_time = now(),
+      update_time = now()
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -275,10 +275,10 @@
         user_type = #{userType,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_time = now(),
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_time = now(),
       </if>
     </set>
     where login_id = #{loginId,jdbcType=BIGINT}
@@ -292,8 +292,8 @@
       wechat_openid = #{wechatOpenid,jdbcType=VARCHAR},
       header_url = #{headerUrl,jdbcType=VARCHAR},
       user_type = #{userType,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      create_time = now(),
+      update_time = now()
     where login_id = #{loginId,jdbcType=BIGINT}
   </update>
 
